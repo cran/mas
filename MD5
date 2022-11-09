@@ -1,0 +1,12 @@
+1163a526c44045cff5f0b55822736b61 *DESCRIPTION
+8196ab835f26d080316fab180d7dea91 *NAMESPACE
+69b1d9d2540ddb87b2b6dad931c0f6be *R/RcppExports.R
+e3fd71cbb1c392c9cbb236019e4c0e14 *R/beavis.R
+d3ccb5a45022aa6ef47a53e129ffd968 *R/gwas.R
+6de36dc14b51bcb9bcf07e355cd3ab98 *build/partial.rdb
+b88055fb8761e661b365cf30a38de5d7 *data/soy.RData
+95fb50d4c1d31e29d49f6c4a2766c7e0 *man/gwas.Rd
+e7bde037034bb0176f4ca9ce39dc0aaf *man/mas.Rd
+a5777967670db89617dacdeedb03ceb0 *man/soy.Rd
+fea14558c9f1d68ef26d17e0e924ca5a *src/GWAS.cpp
+1021fdd2ecfe264c5e5f53ac2d522ae8 *src/RcppExports.cpp
