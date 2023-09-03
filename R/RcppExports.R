@@ -9,3 +9,7 @@ MLM <- function(Y, X, Z, maxit = 500L, logtol = -8, cores = 1L) {
     .Call('_mas_MLM', PACKAGE = 'mas', Y, X, Z, maxit, logtol, cores)
 }
 
+MRR <- function(Y, X, maxit = 500L, tol = 10e-9, cores = 1L, TH = FALSE, NonLinearFactor = 0.0, InnerGS = FALSE, NoInversion = FALSE, HCS = FALSE, XFA = FALSE, NumXFA = 2L, prior_R2 = 0.5, gc_prior_df = 0.5, var_prior_df = 0.0, weight_prior_h2 = 0.0, weight_prior_gc = 0.0, PenCor = 0.0, MinCor = 1.0, uncorH2below = 0.0, roundGCupFrom = 1.0, roundGCupTo = 1.0, roundGCdownFrom = 1.0, roundGCdownTo = 0.0, bucketGCfrom = 1.0, bucketGCto = 1.0, DeflateMax = 0.9, DeflateBy = 0.005, OneVarB = FALSE, OneVarE = FALSE, verbose = FALSE) {
+    .Call('_mas_MRR', PACKAGE = 'mas', Y, X, maxit, tol, cores, TH, NonLinearFactor, InnerGS, NoInversion, HCS, XFA, NumXFA, prior_R2, gc_prior_df, var_prior_df, weight_prior_h2, weight_prior_gc, PenCor, MinCor, uncorH2below, roundGCupFrom, roundGCupTo, roundGCdownFrom, roundGCdownTo, bucketGCfrom, bucketGCto, DeflateMax, DeflateBy, OneVarB, OneVarE, verbose)
+}
+

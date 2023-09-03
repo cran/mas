@@ -6,11 +6,6 @@
 
 using namespace Rcpp;
 
-#ifdef RCPP_USE_GLOBAL_ROSTREAM
-Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
-Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
-#endif
-
 // GWAS
 SEXP GWAS(Eigen::MatrixXd Y, Eigen::MatrixXd GEN, Eigen::MatrixXd M, int maxit, double logtol, int cores, bool verb);
 RcppExport SEXP _mas_GWAS(SEXP YSEXP, SEXP GENSEXP, SEXP MSEXP, SEXP maxitSEXP, SEXP logtolSEXP, SEXP coresSEXP, SEXP verbSEXP) {
@@ -44,10 +39,52 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// MRR
+SEXP MRR(Eigen::MatrixXd Y, Eigen::MatrixXd X, int maxit, double tol, int cores, bool TH, double NonLinearFactor, bool InnerGS, bool NoInversion, bool HCS, bool XFA, int NumXFA, double prior_R2, double gc_prior_df, double var_prior_df, double weight_prior_h2, double weight_prior_gc, double PenCor, double MinCor, double uncorH2below, double roundGCupFrom, double roundGCupTo, double roundGCdownFrom, double roundGCdownTo, double bucketGCfrom, double bucketGCto, double DeflateMax, double DeflateBy, bool OneVarB, bool OneVarE, bool verbose);
+RcppExport SEXP _mas_MRR(SEXP YSEXP, SEXP XSEXP, SEXP maxitSEXP, SEXP tolSEXP, SEXP coresSEXP, SEXP THSEXP, SEXP NonLinearFactorSEXP, SEXP InnerGSSEXP, SEXP NoInversionSEXP, SEXP HCSSEXP, SEXP XFASEXP, SEXP NumXFASEXP, SEXP prior_R2SEXP, SEXP gc_prior_dfSEXP, SEXP var_prior_dfSEXP, SEXP weight_prior_h2SEXP, SEXP weight_prior_gcSEXP, SEXP PenCorSEXP, SEXP MinCorSEXP, SEXP uncorH2belowSEXP, SEXP roundGCupFromSEXP, SEXP roundGCupToSEXP, SEXP roundGCdownFromSEXP, SEXP roundGCdownToSEXP, SEXP bucketGCfromSEXP, SEXP bucketGCtoSEXP, SEXP DeflateMaxSEXP, SEXP DeflateBySEXP, SEXP OneVarBSEXP, SEXP OneVarESEXP, SEXP verboseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Eigen::MatrixXd >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< Eigen::MatrixXd >::type X(XSEXP);
+    Rcpp::traits::input_parameter< int >::type maxit(maxitSEXP);
+    Rcpp::traits::input_parameter< double >::type tol(tolSEXP);
+    Rcpp::traits::input_parameter< int >::type cores(coresSEXP);
+    Rcpp::traits::input_parameter< bool >::type TH(THSEXP);
+    Rcpp::traits::input_parameter< double >::type NonLinearFactor(NonLinearFactorSEXP);
+    Rcpp::traits::input_parameter< bool >::type InnerGS(InnerGSSEXP);
+    Rcpp::traits::input_parameter< bool >::type NoInversion(NoInversionSEXP);
+    Rcpp::traits::input_parameter< bool >::type HCS(HCSSEXP);
+    Rcpp::traits::input_parameter< bool >::type XFA(XFASEXP);
+    Rcpp::traits::input_parameter< int >::type NumXFA(NumXFASEXP);
+    Rcpp::traits::input_parameter< double >::type prior_R2(prior_R2SEXP);
+    Rcpp::traits::input_parameter< double >::type gc_prior_df(gc_prior_dfSEXP);
+    Rcpp::traits::input_parameter< double >::type var_prior_df(var_prior_dfSEXP);
+    Rcpp::traits::input_parameter< double >::type weight_prior_h2(weight_prior_h2SEXP);
+    Rcpp::traits::input_parameter< double >::type weight_prior_gc(weight_prior_gcSEXP);
+    Rcpp::traits::input_parameter< double >::type PenCor(PenCorSEXP);
+    Rcpp::traits::input_parameter< double >::type MinCor(MinCorSEXP);
+    Rcpp::traits::input_parameter< double >::type uncorH2below(uncorH2belowSEXP);
+    Rcpp::traits::input_parameter< double >::type roundGCupFrom(roundGCupFromSEXP);
+    Rcpp::traits::input_parameter< double >::type roundGCupTo(roundGCupToSEXP);
+    Rcpp::traits::input_parameter< double >::type roundGCdownFrom(roundGCdownFromSEXP);
+    Rcpp::traits::input_parameter< double >::type roundGCdownTo(roundGCdownToSEXP);
+    Rcpp::traits::input_parameter< double >::type bucketGCfrom(bucketGCfromSEXP);
+    Rcpp::traits::input_parameter< double >::type bucketGCto(bucketGCtoSEXP);
+    Rcpp::traits::input_parameter< double >::type DeflateMax(DeflateMaxSEXP);
+    Rcpp::traits::input_parameter< double >::type DeflateBy(DeflateBySEXP);
+    Rcpp::traits::input_parameter< bool >::type OneVarB(OneVarBSEXP);
+    Rcpp::traits::input_parameter< bool >::type OneVarE(OneVarESEXP);
+    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
+    rcpp_result_gen = Rcpp::wrap(MRR(Y, X, maxit, tol, cores, TH, NonLinearFactor, InnerGS, NoInversion, HCS, XFA, NumXFA, prior_R2, gc_prior_df, var_prior_df, weight_prior_h2, weight_prior_gc, PenCor, MinCor, uncorH2below, roundGCupFrom, roundGCupTo, roundGCdownFrom, roundGCdownTo, bucketGCfrom, bucketGCto, DeflateMax, DeflateBy, OneVarB, OneVarE, verbose));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_mas_GWAS", (DL_FUNC) &_mas_GWAS, 7},
     {"_mas_MLM", (DL_FUNC) &_mas_MLM, 6},
+    {"_mas_MRR", (DL_FUNC) &_mas_MRR, 31},
     {NULL, NULL, 0}
 };
 

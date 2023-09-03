@@ -1,11 +1,15 @@
 
-CorrectBeavis = function(fit){
+CorrectBeavis = function(fit,verb=TRUE){
+  
+  # Check class
+  if(!is(fit,"GenModel")) stop("Input object must be of class GenModel.")
   
   # Setting threshold
   m = nrow(fit$GWAS$Wald)
   alpha = 0.05/m
   q = ncol(fit$GWAS$Membership)
   tw = qchisq(1-alpha,df=q)
+  if(verb) cat('Bonferroni-adjusted Wald Threshold (tw) =',round(tw,2),'\n')
   
   # Shizhong's function
   correct = function(w,mse){
@@ -30,6 +34,7 @@ CorrectBeavis = function(fit){
   }
   
   # Adjustment
+  if(verb) cat('Correcting Var(QTL) and H2(QTL)\n')
   k = ncol(fit$GWAS$Wald)
   CorrectedVarQTL = matrix(NA,m,k)
   for(i in 1:k){
@@ -41,6 +46,7 @@ CorrectBeavis = function(fit){
   }
   
   # Updating object
+  if(verb) cat('All done!\n')
   fit2 = fit
   CorrectedVarQTL[CorrectedVarQTL<0] = 0
   fit2$GWAS$QTLvar = CorrectedVarQTL

@@ -2,6 +2,7 @@
 \alias{GWAS}
 \alias{gwas}
 \alias{MLM}
+\alias{MRR}
 \alias{CorrectBeavis}
 \alias{print.GenModel}
 \alias{plot.GenModel}
@@ -17,7 +18,7 @@ Genome-wide association analysis that allows for integrating population membersh
 
 \usage{
 GWAS(Y,GEN,M,maxit=500,logtol=-8,cores=1,verb=TRUE)
-CorrectBeavis(fit)
+CorrectBeavis(fit,verb=TRUE)
 gwas(y,GEN,m,...)
 }
 
@@ -28,7 +29,7 @@ gwas(y,GEN,m,...)
   \item{maxit}{Integer. Maximum number of iterations.}
   \item{logtol}{Scalar. Convergerce parameter of null-model in log scale.}
   \item{cores}{Integer. Number of CPUs to use OpenMP.}
-  \item{verb}{Logical. Verbose: Print process status? }
+  \item{verb}{Logical. Print process status? (verbose) }
   \item{fit}{Object of class GenModel, output of the GWAS function.}
   \item{y}{Numeric vector or matrix with phenotypic information.}
   \item{m}{Factor, vector, or numeric matrix with membership information.}
@@ -47,7 +48,7 @@ where \eqn{y} is the response variable, \eqn{Xb} corresponds to the fixed effect
 
 Theorical description of the model is provided by Wei and Xu (2016). Variance components are REML estimates under the univariate case. In the multivariate case, variance and covariance components are obtained through a general-purpose REML approximation (Van Raden and Jung 1987), which yields the exact same solution as REML when all traits are observed in all individuals. The multivariate generalization is described by Xavier and Habier (2022).
 
-The package provides the function \code{MLM(Y,X,Z)} for users only interested in solving multivariate mixed models, which takes as input the phenotypic matrix (\code{Y}), design matrices of fixed effects (\code{X}) and random effect (\code{Z}), and the same controls (\code{logtol,cores}) as the function \code{GWAS}. Unlike the GWAS solved, this function uses an efficient solver without single-value decomposition, as described by Xavier and Habier (2022).
+The package provides the function \code{MLM(Y,X,Z)} for users only interested in solving multivariate mixed models (\code{MRR(Y,X,...)} for ridge regression), which takes as input the phenotypic matrix (\code{Y}), design matrices of fixed effects (\code{X}) and random effect (\code{Z}), and the same controls (\code{logtol,cores}) as the function \code{GWAS}. This function uses an efficient solver without single-value decomposition, as described by Xavier and Habier (2022). 
 
 In the \code{GWAS} function, set \code{M=matrix(rep(1,nrow(Y)))} when membership is not knwon.
 
