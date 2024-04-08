@@ -2,7 +2,6 @@
 \alias{GWAS}
 \alias{gwas}
 \alias{MLM}
-\alias{MRR}
 \alias{CorrectBeavis}
 \alias{print.GenModel}
 \alias{plot.GenModel}
@@ -17,7 +16,7 @@ Genome-wide association analysis that allows for integrating population membersh
 }
 
 \usage{
-GWAS(Y,GEN,M,maxit=500,logtol=-8,cores=1,verb=TRUE)
+GWAS(Y,GEN,M,NumPCs=3,maxit=500,logtol=-8,cores=1,verb=TRUE)
 CorrectBeavis(fit,verb=TRUE)
 gwas(y,GEN,m,...)
 }
@@ -26,6 +25,7 @@ gwas(y,GEN,m,...)
   \item{Y}{Numeric matrix with phenotypic information. Columns are traits, rows are individuals. NA are allowed.}
   \item{GEN}{Numeric matrix of genotypic information. Columns are markers, rows are individuals. NA are not allowed.}
   \item{M}{Numeric matrix with membership information. Columns are population classes, rows are individuals. NA are not allowed.}
+   \item{NumPCs}{Integer indicating the number of principal components to fit the polygenic model. If set to zero, all PCs are utilized (i.e., full GBLUP model).}
   \item{maxit}{Integer. Maximum number of iterations.}
   \item{logtol}{Scalar. Convergerce parameter of null-model in log scale.}
   \item{cores}{Integer. Number of CPUs to use OpenMP.}
@@ -48,7 +48,7 @@ where \eqn{y} is the response variable, \eqn{Xb} corresponds to the fixed effect
 
 Theorical description of the model is provided by Wei and Xu (2016). Variance components are REML estimates under the univariate case. In the multivariate case, variance and covariance components are obtained through a general-purpose REML approximation (Van Raden and Jung 1987), which yields the exact same solution as REML when all traits are observed in all individuals. The multivariate generalization is described by Xavier and Habier (2022).
 
-The package provides the function \code{MLM(Y,X,Z)} for users only interested in solving multivariate mixed models (\code{MRR(Y,X,...)} for ridge regression), which takes as input the phenotypic matrix (\code{Y}), design matrices of fixed effects (\code{X}) and random effect (\code{Z}), and the same controls (\code{logtol,cores}) as the function \code{GWAS}. This function uses an efficient solver without single-value decomposition, as described by Xavier and Habier (2022). 
+The package provides the function \code{MLM(Y,X,Z)} for users only interested in solving multivariate mixed models, which takes as input the phenotypic matrix (\code{Y}), design matrices of fixed effects (\code{X}) and random effect (\code{Z}), and the same controls (\code{logtol,cores}) as the function \code{GWAS}. This function uses an efficient solver without single-value decomposition, as described by Xavier and Habier (2022). 
 
 In the \code{GWAS} function, set \code{M=matrix(rep(1,nrow(Y)))} when membership is not knwon.
 
@@ -58,7 +58,7 @@ The output of functions \code{gwas/GWAS} is of class "GenModel", which has two c
 
 \value{
   
-Returns a list of class "GenModel" with two sublists: GBLUP and GWAS. The GBLUP list contains fixed and random effect coefficients, variance components, genetic correlations, heritability. The GWAS list provides the Wald statistics and QTL variances for each marker-trait combination, as well as the regression coefficients for each marker-population combination for the last trait.
+Returns a list of class "GenModel" with two sublists: POLY and GWAS. The POLY list contains fixed and random effect coefficients, variance components, genetic correlations, heritability. The GWAS list provides the Wald statistics and QTL variances for each marker-trait combination, as well as the regression coefficients for each marker-population combination for the last trait.
 
 }
 
@@ -75,6 +75,7 @@ Xavier, A. and Habier, D., 2022. A new approach fits multivariate genomic predic
 
 \examples{
 
+\dontrun{
 # load the toy dataset
 data( soy ) 
 
@@ -87,5 +88,6 @@ fit2 = CorrectBeavis( fit1 )
 plot( fit1, h2=TRUE, col=8, pch=20) # display QTL h2
 plot( fit2, h2=TRUE, add=TRUE, pch=20, type='o') # adjusted QTL h2
 legend('topleft',pch=16,col=c(8,1),c('Before correction','After Beavis correction'))
+}
 
 }

@@ -13,10 +13,14 @@ Toy dataset part of the SoyNAM. Plant height observed in a few soybean families 
 
 \details{
 
-Data was obtained using the \code{BLUP} from the R package SoyNAM. SNPs are coded as 012, where 0 = homozygous as hub parent, 1 = heterozygous, 2 = homozygous as the founder parent. Details of the soybean nested association mappging (SoyNAM) population are provided by Song et al. (2017), Xavier et al. (2018) and Diers et al. (2018).
+Subset of the data presented in Xavier et al. (2017). The whole dataset is available in the R package NAM, through \code{data(met)}. Details of the soybean nested association mappging (SoyNAM) population are provided by Song et al. (2017), Xavier et al. (2018) and Diers et al. (2018).
 
 }
 \references{
+
+Xavier, A., Hall, B., Hearst, A.A., Cherkauer, K.A. and Rainey, K.M., 2017. Genetic architecture of phenomic-enabled canopy coverage in Glycine max. Genetics, 206(2), pp.1081-1089.
+
+Xavier, A., Xu, S., Muir, W.M. and Rainey, K.M., 2015. NAM: association studies in multiple populations. Bioinformatics, 31(23), pp.3862-3864.
 
 Song, Q., Yan, L., Quigley, C., Jordan, B.D., Fickus, E., Schroeder, S., Song, B.H., Charles An, Y.Q., Hyten, D., Nelson, R. and Rainey, K., 2017. Genetic characterization of the soybean nested association mapping population. The Plant Genome, 10(2), pp.plantgenome2016-10.
 

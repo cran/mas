@@ -1,2 +1,2 @@
 # mas
-Membership Association Studies
+Marker Association Studies

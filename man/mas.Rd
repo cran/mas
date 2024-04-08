@@ -22,11 +22,12 @@ Xavier, A. and Habier, D., 2022. A new approach fits multivariate genomic predic
 }
 \examples{
 
+\dontrun{
 # load the toy dataset
 data( soy ) 
 
 # run gwas
-fit1 = gwas(y, Z, pop) 
+fit1 = gwas(y[w], Z[w,], pop[w]) 
 # adjust variances
 fit2 = CorrectBeavis( fit1 ) 
 
@@ -34,6 +35,6 @@ fit2 = CorrectBeavis( fit1 )
 plot( fit1, h2=TRUE, col=8, pch=20) # display QTL h2
 plot( fit2, h2=TRUE, add=TRUE, pch=20, type='o') # adjusted QTL h2
 legend('topleft',pch=16,col=c(8,1),c('Before correction','After Beavis correction'))
-
+}
 
 }

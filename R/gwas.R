@@ -1,20 +1,17 @@
 gwas = function(y,GEN,m=NULL,...){
-  
   if(is.vector(y)){
     Y = matrix(y,ncol=1)
   }else{
     Y=y
   } 
-  
   if(is.null(m)){
     M = matrix(rep(1,nrow(Y)))
-  }else if(is.vector(m)){
+  }else if(is.vector(m)|is.factor(m)){
     m = droplevels(factor(m))
     M = model.matrix(~m-1)
   }else if(is.matrix(m)){
     M = m
   } 
-  
   fit = GWAS(Y,GEN,M,...)
   return(fit)
 }
